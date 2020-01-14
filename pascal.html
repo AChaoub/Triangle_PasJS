@@ -1,0 +1,109 @@
+<HTML>
+<TITLE>Triangle de Pascal...</TITLE>
+<HEAD>
+<STYLE TYPE="text/css">
+TD {
+    color:#000000;
+    font-size:15px;
+    font-family:Verdana;
+    text-align:center;
+    background-color:#c0c0f0;
+    width:50px;
+    height: 30px;
+}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+//----------------------------------
+// Entée  : niv_ hauteur du triangle
+// Sortie : Tableau des valeurs
+//----------------------------------
+function TrianglePascal( niv_){
+  var i, k;
+  var T_Result = new Array();
+  
+  //-- Création tableau multidimensionnel
+  for( i =0; i< niv_; i++){
+    T_Result[i] = new Array();
+    T_Result[i][0]= 1; // 1st colonne à 1
+  }
+  //-- Calcul des Valeurs
+  for( i=1; i< niv_; i++){
+    for( k =1; k < i; k++){
+      T_Result[i][k] = T_Result[i-1][k-1] + T_Result[i-1][k];
+    }
+    //-- Dernière colonne à 1
+    T_Result[i][k] = 1;
+  }
+  return( T_Result);
+}
+//-----------------------------
+// Entrée : Tableau des valeurs
+// Sortie : Affichage Ecran
+//-----------------------------
+function ShowTriangle( tab_){
+  var i, k;
+  var Niv  = tab_.length;
+  var Html = 'Triangle de Pascal à ' +Niv +' niveaux...';
+  //-- Affichage des Valeurs
+  Html += '<TABLE BORDER=0 CELLSPACING =4>';
+  for( i in tab_){
+    Html += '<TR>';
+    for( k in tab_[i]){
+      Html += '<TD>' +tab_[i][k] +'</TD>';
+    }
+    Html += '</TR>';
+  }
+  Html += '</TABLE>';
+  document.write( Html);
+}
+//=============================
+//=============================
+var T_Pascal = new Array();
+T_Pascal = TrianglePascal(10);
+ShowTriangle( T_Pascal);
+    
+    
+    
+//    function sommeNombre(monFormulaire) {
+//  var somme=parseFloat(monFormulaire.nombre1.value) + parseFloat(monFormulaire.nombre2.value);
+//  console.log(somme);
+//}
+//    function subnombre(F){
+//        var s= parseInt(F.nombre1.value)-parseInt(F.nombre2.value);
+//        console.log(s);
+//    }
+//    function CalculSomme(x1, x2)
+//{
+//		var somme=0;
+//		var x1 = parseFloat(x1);
+//		var x2 = parseFloat(x2);
+//		somme = x1 + x2;
+//return somme;
+//}
+//    
+//    var demandeX1=prompt('Veuillez entrez un nombre');
+//	var demandeX2=prompt('Veuillez entrez un deuxieme nombre');
+////	var demandeX3=prompt('Entrez la somme des deux nombres précédants');
+//	var resultat= CalculSomme (demandeX1, demandeX2);
+// 
+//	document.write(resultat);
+    
+    
+</SCRIPT>
+</HEAD>
+<BODY>
+<!--
+<form>
+   Nombre 1 : <input name="nombre1" value="30"><br>
+   Nombre 2 : <input name="nombre2" value="10"><br>
+   <input type="button" value="Somme des 2 nombres" onclick="sommeNombre(this.form)">
+   <input type="button" value="Sustra des 2 nombres" onclick="subnombre(this.form)">
+</form>
+-->
+
+
+
+
+
+</BODY>
+</HTML>
